@@ -1,10 +1,10 @@
 # MIE286 Study
 
-A web-based experiment built for MIE286 (Engineering and Society) at the University of Toronto. The study investigates how performance feedback framing affects calculus problem-solving behaviour.
+A web-based experiment built for MIE286 (Probability and Statistics) at the University of Toronto. The study investigates how performance feedback framing affects calculus problem-solving behaviour.
 
 ## What it does
 
-Participants work through a set of mental-math calculus questions under timed conditions. After each question they receive fabricated comparative feedback — randomly assigned to either an **above-average** or **below-average** framing — to test whether perceived relative standing influences subsequent performance. A manipulation check and a brief debrief are included at the end.
+Participants work through a set of mental-math calculus questions under timed conditions. After each question they receive fabricated comparative feedback — randomly assigned to either an **above-average** or **below-average** framing — to test whether perceived relative standing influences subsequent performance. A manipulation check and a debrief are included at the end.
 
 ## Tech stack
 
@@ -26,7 +26,7 @@ src/
 
 ## Live link
 
-> **Link will be added once data collection begins.**
+> **Link will be added once data collection ends.**
 
 ## Data
 

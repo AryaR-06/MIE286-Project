@@ -3,6 +3,7 @@ export type Condition = "above" | "below";
 // Fetched when a question screen is shown (no answer/explanation)
 export interface QuestionDisplay {
   id: number;
+  variant: number;
   acclimation: boolean;
   question: string;
   pct_correct_above: number;
@@ -20,6 +21,7 @@ export interface QuestionResponse {
   session_id: string;
   condition: Condition;
   question_id: number;
+  variant: number;
   acclimation: boolean;
   time_seconds: number;
   correct: boolean;

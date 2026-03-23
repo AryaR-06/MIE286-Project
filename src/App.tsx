@@ -91,6 +91,9 @@ export default function App() {
   const [sessionId] = useState(generateSessionId);
   const [condition, setCondition] = useState<Condition | null>(null);
   const [orderedMetas] = useState(() => buildQuestionOrder(QUESTION_METAS));
+  const [variantMap] = useState<Record<number, number>>(() =>
+    Object.fromEntries(QUESTION_METAS.map((m) => [m.id, Math.floor(Math.random() * 3) + 1]))
+  );
   const [currentDisplay, setCurrentDisplay] = useState<QuestionDisplay | null>(null);
   const [currentResult, setCurrentResult] = useState<QuestionResult | null>(null);
   const [checkingAnswer, setCheckingAnswer] = useState(false);
@@ -134,7 +137,7 @@ export default function App() {
     setCurrentResult(null);
     setAnswer("");
     startTimeRef.current = Date.now();
-    fetchQuestionDisplay(currentMeta.id)
+    fetchQuestionDisplay(currentMeta.id, variantMap[currentMeta.id])
       .then(setCurrentDisplay)
       .catch(() => setLoadError("Failed to load question. Please refresh the page."));
     setTimeout(() => inputRef.current?.focus(), 50);
@@ -146,13 +149,14 @@ export default function App() {
     const parsed = parseFloat(answer.trim());
     setCheckingAnswer(true);
     try {
-      const result = await fetchQuestionResult(currentMeta.id);
+      const result = await fetchQuestionResult(currentMeta.id, variantMap[currentMeta.id]);
       setCurrentResult(result);
       const correct = Math.abs(parsed - result.answer) <= result.tolerance;
       const resp: QuestionResponse = {
         session_id: sessionId,
         condition,
         question_id: currentMeta.id,
+        variant: variantMap[currentMeta.id],
         acclimation: currentMeta.acclimation,
         time_seconds: parseFloat(elapsed.toFixed(2)),
         correct,
